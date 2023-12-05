@@ -4,12 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=EDGE">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
     <title>tab Menu</title>
     <style>
         /* 스타일시트 작성 */
+        .container {
+            padding:20px;
+        }
+        .tab-wrap {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            height:100vh;
+        }
+        .tab-link {
+            display:flex;
+            flex-direction:row;
+            flex-wrap:nowrap;
+            justify-content:space-between;
+        }
+        .tab-link a {
+            padding:10px 18px;
+            font-size:1.8rem;
+        }
+        .link-underline {
+            position: relative;
+            line-height: 1em;
+        }
+        .link-underline:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -.15em;
+            height: calc(1px + .1em);
+            background-color: red;
+            transition: width .2s ease,left .2s ease,-webkit-transform .2s ease;
+            transition: width .2s ease,left .2s ease,transform .2s ease;
+            transition: width .2s ease,left .2s ease,transform .2s ease,-webkit-transform .2s ease;
+            width: 0;
+        }
+        .link-underline:hover:after,
+        .link-underline.active:after{
+            left: 0;
+            width: 100%
+        }
+        .tab-cont {
+            display:flex;
+            flex-direction:column;
+        }
+        .tab-cont .tab-cont-item{
+            visibility: hidden;
+            height:0;
+            width:100%;
+            padding:20px;
+            background-color:bisque;
+            text-align:center;
+        }
+        .tab-cont .tab-cont-item.active{
+            visibility:visible;
+            height:300px;
+        }
     </style>
+    <script defer src="../js/tab.js"></script>
 </head>
 <body>
-    
+    <main class="container">
+        <section class="tab-wrap">
+            <ul class="tab-link">
+                <li><a href="javascript:;" class="link-underline active">01tab</a></li>
+                <li><a href="javascript:;" class="link-underline">02tab</a></li>
+                <li><a href="javascript:;" class="link-underline">03tab</a></li>
+                <li><a href="javascript:;" class="link-underline">04tab</a></li>
+            </ul>
+            <div class="tab-cont">
+                <div class="tab-cont-item active">01tab content</div>
+                <div class="tab-cont-item">02tab content</div>
+                <div class="tab-cont-item">03tab content</div>
+                <div class="tab-cont-item">04tab content</div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
