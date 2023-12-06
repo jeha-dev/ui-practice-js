@@ -15,7 +15,7 @@
             display:flex;
             flex-direction:column;
             justify-content:center;
-            height:100vh;
+            height:auto;
         }
         .tab-link {
             display:flex;
@@ -72,21 +72,23 @@
     <script defer src="../js/tab.js"></script>
 </head>
 <body>
-    <main class="container">
-        <section class="tab-wrap">
-            <div class="tab-link">
-               <a href="#01tab" class="tab-link-underline">01tab</a>
-               <a href="#02tab" class="tab-link-underline">02tab</a>
-               <a href="#03tab" class="tab-link-underline">03tab</a>
-               <a href="#04tab" class="tab-link-underline">04tab</a>
-            </div>
-            <div class="tab-cont">
-                <div id="01tab" class="tab-cont-item">01tab content</div>
-                <div id="02tab" class="tab-cont-item">02tab content</div>
-                <div id="03tab" class="tab-cont-item">03tab content</div>
-                <div id="04tab" class="tab-cont-item">04tab content</div>
-            </div>
-        </section>
-    </main>
+    <div id="wrap">
+        <main class="container">
+            <section class="tab-wrap">
+                <div class="tab-link">
+                   <a href="#01tab" class="tab-link-underline active">01tab</a>
+                   <a href="#02tab" class="tab-link-underline">02tab</a>
+                   <a href="#03tab" class="tab-link-underline">03tab</a>
+                   <a href="#04tab" class="tab-link-underline">04tab</a>
+                </div>
+                <div class="tab-cont">
+                    <div id="01tab" class="tab-cont-item active">01tab content</div>
+                    <div id="02tab" class="tab-cont-item">02tab content</div>
+                    <div id="03tab" class="tab-cont-item">03tab content</div>
+                    <div id="04tab" class="tab-cont-item">04tab content</div>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
