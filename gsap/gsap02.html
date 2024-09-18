@@ -270,25 +270,160 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
     <script>
+        /*
+            gsap.to로 스크롤트리거 : 기본기능
+            ScrollTrigger : 더 많은 옵션 사용 가능
+        */
 
-        // image animation
+        // section1 이미지 1개 애니메이션 적용
         const ani1 = gsap.timeline();
-        ani1.to("#section1 .parallax__item__img", {rotate : 720, scale : 0, borderRadius:200}).to("#section1 .parallax__item__img", {rotate : 0, scale : 1, borderRadius:20})
-        //gsap.to() 내에서 사용 시 기본기능
-        //scrollTrigger 사용법2 .create 사용 시 더 많은 옵션 사용 가능
-        ScrollTrigger.create({ //단, 대문자로 시작해야함
-            animation : ani1, // 애니메이션을 따로 작성 가능
+        ani1.to("#section1 .parallax__item__img", {rotation:720, scale:0, borderRadius:200})
+        ScrollTrigger.create({
+            animation: ani1,
             trigger : "#section1",
-            start : "top top",
-            end : "+=2000", // bottom bottom 시작도 전에 끝나버려, section1에 대한 스크롤값을 2000px로 추가해주는 것
-            scrub:true,
-            pin : true,
-            anticipatePin : 1, // pin이 부드럽게 보이는 효과
-            markers : true,
+            start  :"top top",
+            end: "+=2000", // end에 2000px 기준점을 더 올릴 수 있음 : 스크롤을 내려도 멈춰진 상태에서 애니메이션만 실행
+            scrub: true,
+            pin: true,
+            anticipatePin : 1, // gsap 내장 애니메이션 부드럽게
+            markers: true,
         });
 
-        // 이미지 순차적으로 보여주기
+       // section2 이미지 3개 순차적으로 등장
+        const ani2 = gsap.timeline();
+        ani2.from("#section2 .i1", {y: -50, autoAlpha:0}) // opacity의 경우: autoAlpha 적용
+        .from("#section2 .i2", {y: 50, autoAlpha:0})
+        .from("#section2 .i3", {y: -50, autoAlpha:0}); // to() 대신 from()사용 시 지금 있는 값을 유지가능 y 는 translate y 를 의미
+        ScrollTrigger.create({
+            animation: ani2,
+            trigger : "#section2",
+            start  :"top top",
+            end: "+=2000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
 
+        // section3 이미지 n개 랜덤으로 등장
+        const ani3 = gsap.timeline();
+        ani3.from("#section3 .parallax__item__img", {autoAlpha:0, y:-100, ease:"back.out(4)", 
+            stagger: {
+                amount: 3,
+                from: "random,"
+            }
+        }); // stargger에 값을 주면 하위요소들에게 적용됨
+        ScrollTrigger.create({
+            animation: ani3,
+            trigger : "#section3",
+            start  :"top top",
+            end: "+=3000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+
+        //section4 : 이미지 전체 축소하기
+        const ani4 = gsap.timeline();
+        ani4.from("#section4 .parallax__item__img", {autoAlpha:0, scale:5 , width:"100vw", height:"100vh" });
+        ScrollTrigger.create({
+            animation: ani4,
+            trigger : "#section4",
+            start  :"top top",
+            end: "+=2000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+        //section5 : 텍스트 좌우로 fadeout
+        const ani5 = gsap.timeline();
+        ani5.to("#section5 .t1", {xPercent:300}, "text") // xPercent 라고 하면 100%, 기본은 translateX
+            .to("#section5 .t2", {xPercent:-300}, "text")
+            .to("#section5 .t3", {xPercent:300}, "text")
+            .to("#section5 .t4", {xPercent:-300}, "text");
+        ScrollTrigger.create({
+            animation: ani5,
+            trigger : "#section5",
+            start  :"top top",
+            end: "+=2000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+        //section6 : 텍스트 확대하기
+        const ani6 = gsap.timeline();
+        ani6.to("#section6 .parallax__item__text", {scale:60, duration:2})
+            .to("#section6 .parallax__item__text", {autoAlpha:0});
+        ScrollTrigger.create({
+            animation: ani6,
+            trigger : "#section6",
+            start  :"top top",
+            end: "+=3000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+        //section7 : 텍스트 제자리에서 바뀌는 효과
+        const ani7 = gsap.timeline();
+        ani7.from("#section7 .t1", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t2", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t3", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t4", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t5", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t6", {autoAlpha:0, y:50, duration:1}, "+=1")
+            .from("#section7 .t7", {autoAlpha:0, y:50, duration:1}, "+=1");
+
+        ScrollTrigger.create({
+            animation: ani7,
+            trigger : "#section7",
+            start  :"top top",
+            end: "+=6000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+        //section8 : 텍스트
+        const ani8 = gsap.timeline();
+        ani8.from("#section8 .t1", {x:innerWidth * 1})
+            .from("#section8 .t2", {x:innerWidth * -1})
+            .from("#section8 .t3", {x:innerWidth * 1})
+            .from("#section8 .i1", {x:innerWidth * 1, rotation:360, scale:1.5, duration:2});
+
+        ScrollTrigger.create({
+            animation: ani8,
+            trigger : "#section8",
+            start  :"top top",
+            end: "+=4000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
+
+        //section9 : 이미지 확대하기2
+        const ani9 = gsap.timeline();
+        ani9.to("#section9 .parallax__item__img", {scale:13})
+            .to("#section9 .parallax__item__img", {autoAlpha:0})
+
+        ScrollTrigger.create({
+            animation: ani9,
+            trigger : "#section9",
+            start  :"top top",
+            end: "+=3000", 
+            scrub: true,
+            pin: true,
+            anticipatePin : 1,
+            markers: true,
+        });
     </script>
 </body>
-</html>
