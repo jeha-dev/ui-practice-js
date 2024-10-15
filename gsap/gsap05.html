@@ -195,7 +195,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">높은 목표를 세우고, 스스로 채찍질 한다.</p>
+            <p class="parallax__item__desc reveal">높은 목표를 세우고, 스스로 채찍질 한다.</p>
         </section>
         <!-- //section1 -->
 
@@ -205,17 +205,17 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">결과도 중요하지만, 과정을 더 중요하게 생각한다.</p>
+            <p class="parallax__item__desc reveal">결과도 중요하지만, 과정을 더 중요하게 생각한다.</p>
         </section>
         <!-- //section2 -->
 
         <section id="section3" class="parallax__item">
-            <span class="parallax__item__num">03</span>
+            <span class="parallax__item__num reveal reveal_LTR" data-delay="0.08">03</span>
             <h2 class="parallax__item__title">section3</h2>
-            <figure class="parallax__item__imgWrap">
+            <figure class="parallax__item__imgWrap reveal reveal_LTR">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">매 순간에 최선을 다하고, 끊임없이 변화한다.</p>
+            <p class="parallax__item__desc reveal reveal_LTR" data-delay="0.18">매 순간에 최선을 다하고, 끊임없이 변화한다.</p>
         </section>
         <!-- //section3 -->
 
@@ -225,7 +225,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">모든 일에는 기본을 중요하게 생각한다.</p>
+            <p class="parallax__item__desc reveal">모든 일에는 기본을 중요하게 생각한다.</p>
         </section>
         <!-- //section4 -->
 
@@ -235,7 +235,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">열정을 잃지 않고 실패에서 실패로 걸어가는 것이 성공이다.</p>
+            <p class="parallax__item__desc reveal">열정을 잃지 않고 실패에서 실패로 걸어가는 것이 성공이다.</p>
         </section>
         <!-- //section5 -->
 
@@ -245,7 +245,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">천 마디 말보단 하나의 행동이 더 값지다.</p>
+            <p class="parallax__item__desc reveal">천 마디 말보단 하나의 행동이 더 값지다.</p>
         </section>
         <!-- //section6 -->
 
@@ -255,7 +255,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">조그만 성공에 만족하지 않으며, 방심을 경계한다.</p>
+            <p class="parallax__item__desc reveal">조그만 성공에 만족하지 않으며, 방심을 경계한다.</p>
         </section>
         <!-- //section7 -->
 
@@ -265,7 +265,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">나는 내가 더 노력할수록 운이 더 좋아진다는 걸 발견했다.</p>
+            <p class="parallax__item__desc reveal">나는 내가 더 노력할수록 운이 더 좋아진다는 걸 발견했다.</p>
         </section>
         <!-- //section8 -->
 
@@ -275,7 +275,7 @@
             <figure class="parallax__item__imgWrap">
                 <div class="parallax__item__img"></div>
             </figure>
-            <p class="parallax__item__desc">꿈이 있다면, 그 꿈을 잡고 절대 놓아주지마라.</p>
+            <p class="parallax__item__desc reveal">꿈이 있다면, 그 꿈을 잡고 절대 놓아주지마라.</p>
         </section>
         <!-- //section9 -->
     </main>
@@ -284,22 +284,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
     <script>
-        gsap.utils.toArray(".parallax__item__desc").forEach(item => {
+
+        //01. 텍스트에만 효과 주고 싶을 때 사용하면 좋을듯..
+        // gsap.utils.toArray(".parallax__item__desc").forEach(item => {
+        //     ScrollTrigger.create({
+        //         trigger: item,
+        //         start: "top 80%",
+        //         end: "bottom 20%",
+        //         markers: true,
+        //         onEnter: ()=> {animate(item)}, // 콜백함수 사용해서 애니메이트 시도, item값 매개변수로 설정
+        //     });
+
+        //     item.style.opacity = "0";
+        // });
+
+        // const animate = (item) => { // 매개변수가 있는 익명함수 animate
+        //     gsap.fromTo(item, // fromTo로 전후 애니메이션 설정 가능
+        //         {autoAlpha:0, x:100, y:0}, // x, y 값 설정해서 좌표 설정 가능
+        //         {autoAlpha:1, x:0, y:0, duration:1.25, overwrite: "none", ease:"expo" }, //이벤트값이 큐에 계속해서 저장이 되기 때문에 작동할 때마다 애니메이션이 끝나도 작동하는 것은 overwrite로 조정가능
+        //     );
+        // }
+
+        //02. 각 컴포넌트별로 주고 싶은 효과가 다를 때
+        gsap.utils.toArray(".reveal").forEach(item => {
             ScrollTrigger.create({
                 trigger: item,
-                start: "top 80%",
-                end: "bottom 20%",
-                markers: true,
-                onEnter: ()=> {animate(item)},
+                start: "top bottom", // %로 설정하면 애니메이션이 깜박깜박하는 느낌이 듦, 위아래로 꽉차게 or 기본값으로
+                end: "bottom top",
+                markers: false,
+                onEnter: ()=> {animate(item)}, // 콜백함수 사용해서 애니메이트 시도, item값 매개변수로 설정
             });
 
             item.style.opacity = "0";
         });
 
-        const animate = (item) => {
-            gsap.fromTo(item,
-                {autoAlpha:0},
-                {autoAlpha:1},
+        const animate = (item) => { // 매개변수가 있는 익명함수 animate
+            let x = 0;
+            let y = 0;
+            let delay = item.dataset.delay;
+
+            if(item.classList.contains("reveal_LTR")){ // 클래스로 조건 설정
+                x = -100,
+                y = 0
+            }else {
+                x = 100,
+                y = 0
+            }
+            // else if(){ //....
+
+            // }
+
+            gsap.fromTo(item, // fromTo로 전후 애니메이션 설정 가능
+                {autoAlpha:0, x:x, y:y}, // x, y 값 설정해서 좌표 설정 가능
+                {autoAlpha:1, x:0, y:0,delay:delay, duration:1.25, overwrite: "none", ease:"expo" }, //이벤트값이 큐에 계속해서 저장이 되기 때문에 작동할 때마다 애니메이션이 끝나도 작동하는 것은 overwrite로 조정가능
             );
         }
     </script>
