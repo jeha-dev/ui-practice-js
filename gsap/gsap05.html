@@ -306,17 +306,9 @@
         // }
 
         //02. 각 컴포넌트별로 주고 싶은 효과가 다를 때
-        gsap.utils.toArray(".reveal").forEach(item => {
-            ScrollTrigger.create({
-                trigger: item,
-                start: "top bottom", // %로 설정하면 애니메이션이 깜박깜박하는 느낌이 듦, 위아래로 꽉차게 or 기본값으로
-                end: "bottom top",
-                markers: false,
-                onEnter: ()=> {animate(item)}, // 콜백함수 사용해서 애니메이트 시도, item값 매개변수로 설정
-            });
-
-            item.style.opacity = "0";
-        });
+        const hide = (item) => {
+            gsap.set(item,  {autoAlpha:0})
+        }
 
         const animate = (item) => { // 매개변수가 있는 익명함수 animate
             let x = 0;
@@ -339,6 +331,20 @@
                 {autoAlpha:1, x:0, y:0,delay:delay, duration:1.25, overwrite: "none", ease:"expo" }, //이벤트값이 큐에 계속해서 저장이 되기 때문에 작동할 때마다 애니메이션이 끝나도 작동하는 것은 overwrite로 조정가능
             );
         }
+
+        gsap.utils.toArray(".reveal").forEach(item => {
+            hide(item);
+
+            ScrollTrigger.create({
+                trigger: item,
+                // start: "top bottom", // %로 설정하면 애니메이션이 깜박깜박하는 느낌이 듦, 위아래로 꽉차게 or 기본값으로
+                // end: "bottom top",
+                markers: false,
+                onEnter: ()=> {animate(item)}, // 콜백함수 사용해서 애니메이트 시도, item값 매개변수로 설정
+            });
+
+            //item.style.opacity = "0"; // 자바스크립트형식 -> gsap 형식으로 바꿔주기
+        });
     </script>
 </body>
 </html>
